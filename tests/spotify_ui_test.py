@@ -1,11 +1,10 @@
-import time
 import pytest
 
 from conftest import browser
 from spotify_forms.left_nav_form import LeftNavigationForm
 from spotify_forms.main_form import MainContentForm
 from utils.constants.url_constants import SpotifyUrl
-from utils.constants.test_data import SingersAndSongs
+from utils.constants.test_data import Singers, Songs
 
 
 class TestSpotifyUI:
@@ -14,8 +13,8 @@ class TestSpotifyUI:
     @pytest.mark.parametrize(
         "singer_name, song",
         [
-            pytest.param(SingersAndSongs.DRAKE, SingersAndSongs.ONE_DANCE_SONG),
-            pytest.param(SingersAndSongs.THE_BEATLES, SingersAndSongs.HERE_COMES_THE_SUN_SONG)
+            pytest.param(Singers.DRAKE, Songs.ONE_DANCE_SONG),
+            pytest.param(Singers.THE_BEATLES, Songs.HERE_COMES_THE_SUN_SONG)
         ]
     )
     def test_search_song(self, browser, singer_name: str, song: str):
