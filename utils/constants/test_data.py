@@ -4,8 +4,8 @@ class Singers:
 
 
 class Songs:
-    ONE_DANCE_SONG: str = "One Dance"
-    HERE_COMES_THE_SUN_SONG: str = "Here Comes The Sun - Remastered 2009"
+    ONE_DANCE: str = "One Dance"
+    HERE_COMES_THE_SUN: str = "Here Comes The Sun - Remastered 2009"
 
 
 class Genres:
