@@ -1,15 +1,9 @@
-from browser.py_quality_services import PyQualityServices
-from forms.base_form import BaseForm
-from selenium.webdriver.common.by import By
+from playwright.sync_api import Page
 
 
-class LeftNavigationForm(BaseForm):
-    __search_button = PyQualityServices.element_factory.get_button((By.XPATH, "//div[@id='Desktop_LeftSidebar_Id']"
-                                                                              "//a[@href='/search']"), "Search button")
+class LeftNavigationForm:
 
-    def __init__(self):
-        super(LeftNavigationForm, self).__init__((By.XPATH, "//div[@id='Desktop_LeftSidebar_Id']"),
-                                                 name="Left Navigation")
+    __search_button_xpath = "xpath=//div[@id='Desktop_LeftSidebar_Id']//a[@href='/search']"
 
-    def click_search_btn(self):
-        self.__search_button.click()
+    def click_search_btn(self, page: Page):
+        page.locator(self.__search_button_xpath).click()
