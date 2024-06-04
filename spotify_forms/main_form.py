@@ -1,19 +1,13 @@
-from browser.py_quality_services import PyQualityServices
-from forms.base_form import BaseForm
-from selenium.webdriver.common.by import By
+from utils.page_instance import SingletonPage
 
 
-class MainContentForm(BaseForm):
-    __search_input = PyQualityServices.element_factory.get_text_box((By.XPATH, "//form[@role='search']//input"),
-                                                                    "Search input")
+class MainContentForm:
 
-    def __init__(self):
-        super(MainContentForm, self).__init__((By.XPATH, "//div[@class='main-view-container']"),
-                                              name="Main form")
+    __search_input_xpath = "xpath=//form[@role='search']//input"
+    __page = SingletonPage().get_page()
 
     def search_singer(self, name):
-        self.__search_input.send_keys(name)
+        self.__page.locator(self.__search_input_xpath).fill(name)
 
     def get_song_by_name(self, name):
-        return PyQualityServices.element_factory.get_text_box((By.XPATH, f"//div[contains(text(), \"{name}\")]"),
-                                                              f"A song named '{name}'")
+        return self.__page.locator(f"xpath=//div[contains(text(), \"{name}\")]")

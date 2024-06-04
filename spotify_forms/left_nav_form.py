@@ -1,15 +1,10 @@
-from browser.py_quality_services import PyQualityServices
-from forms.base_form import BaseForm
-from selenium.webdriver.common.by import By
+from utils.page_instance import SingletonPage
 
 
-class LeftNavigationForm(BaseForm):
-    __search_button = PyQualityServices.element_factory.get_button((By.XPATH, "//div[@id='Desktop_LeftSidebar_Id']"
-                                                                              "//a[@href='/search']"), "Search button")
+class LeftNavigationForm:
 
-    def __init__(self):
-        super(LeftNavigationForm, self).__init__((By.XPATH, "//div[@id='Desktop_LeftSidebar_Id']"),
-                                                 name="Left Navigation")
+    __page = SingletonPage().get_page()
+    __search_button_xpath = "xpath=//div[@id='Desktop_LeftSidebar_Id']//a[@href='/search']"
 
     def click_search_btn(self):
-        self.__search_button.click()
+        self.__page.locator(self.__search_button_xpath).click()
